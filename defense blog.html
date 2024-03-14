@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defense Technology Blog</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0f0f0f; /* Dark background */
+    color: #f0f0f0; /* Light text */
+}
+
+header {
+    background-color: #151515; /* Dark gray */
+    color: #f0f0f0;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 32px;
+    margin: 0;
+}
+
+header h1 span {
+    color: #ffd700; /* Yellow */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: right;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffd700; /* Yellow on hover */
+}
+
+main {
+    padding: 20px;
+}
+
+section#post {
+    background-color: #1f1f1f; /* Darker gray */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+section#post h2 {
+    color: #ffd700; /* Yellow */
+    margin-bottom: 20px;
+}
+
+section#post .view-count {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+section#post article p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+section#post .actions {
+    margin-top: 20px;
+}
+
+section#post .actions button {
+    padding: 10px 20px;
+    background-color: #4caf50; /* Green */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+section#post .actions button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+#commentInput {
+    width: 100%;
+    height: 150px; /* Larger comment box */
+    margin-bottom: 10px;
+}
+
+#submitCommentBtn {
+    padding: 10px 20px;
+    background-color: #4caf50; /* Green */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+#submitCommentBtn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+footer {
+    background-color: #151515; /* Dark gray */
+    color: #aaa;
+    text-align: center;
+    padding: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1><span>Defense</span> Technology Blog</h1>
+        <nav>
+            <ul>
+                <li><a href="#news">News</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="post">
+            <h2>Advancements in Military Technology: Insights and Analysis</h2>
+            <p class="view-count">Total Views: <span id="viewCount">15,321</span></p>
+            <article>
+                <p>Explore the latest breakthroughs in defense technology with our team of experts. From unmanned aerial vehicles (UAVs) to cybersecurity solutions, we provide in-depth analysis and commentary on cutting-edge developments shaping the future of national security.</p>
+                <p>Join us as we delve into the complexities of defense innovation, highlighting key advancements and their implications for military strategy and operations.</p>
+            </article>
+            <div class="actions">
+                <button id="likeBtn">👍 Like</button>
+                <button id="commentBtn">💬 Comment</button>
+            </div>
+            <div id="commentBox">
+                <h3>Comments</h3>
+                <ul id="commentList">
+                    <!-- Comments will be dynamically added here -->
+                </ul>
+                <textarea id="commentInput" placeholder="Leave a comment"></textarea>
+                <button id="submitCommentBtn">Submit</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 DefenseTech - Securing Tomorrow's World</p>
+    </footer>
+
+    <script>
+        // Get references to elements
+const viewCountElement = document.getElementById("viewCount");
+const likeBtn = document.getElementById("likeBtn");
+const commentBtn = document.getElementById("commentBtn");
+const commentInput = document.getElementById("commentInput");
+const commentList = document.getElementById("commentList");
+const submitCommentBtn = document.getElementById("submitCommentBtn");
+
+// Initialize view count and like count
+let viewCount = 250; // Example initial view count
+let likeCount = 0; // Example initial like count
+
+// Function to update view count
+function updateViewCount() {
+    viewCount++;
+    viewCountElement.textContent = viewCount;
+}
+
+// Function to update like count
+function updateLikeCount() {
+    likeCount++;
+    likeBtn.textContent = `Like (${likeCount})`;
+}
+
+// Event listeners
+likeBtn.addEventListener("click", likePost);
+commentBtn.addEventListener("click", toggleCommentBox);
+submitCommentBtn.addEventListener("click", submitComment);
+
+// Functions
+function likePost() {
+    // Increment like count
+    updateLikeCount();
+    alert("Liked!");
+}
+
+function toggleCommentBox() {
+    const commentBox = document.getElementById("commentBox");
+    commentBox.classList.toggle("show");
+}
+
+function submitComment() {
+    const commentText = commentInput.value.trim();
+    if (commentText !== "") {
+        const commentItem = document.createElement("li");
+        commentItem.textContent = commentText;
+        commentList.appendChild(commentItem);
+        commentInput.value = "";
+    } else {
+        alert("Please enter a comment.");
+    }
+}
+
+// Initial view count update
+updateViewCount();
+
+    </script>
+</body>
+</html>
